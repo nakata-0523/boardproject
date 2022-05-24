@@ -75,3 +75,12 @@ class BoardCreate(CreateView):
     model = BoardModel
     fields = ('title', 'content', 'author', 'sns_image')
     success_url = reverse_lazy('list')
+
+## boardproject
+
+### Djangoを使用してSNS風の投稿アプリを作成した
+
+#* ユーザー新規登録機能
+#* ログイン・ログアウト機能
+#* 投稿の作成（画像ファイルも投稿可能）
+#* 投稿の編集・削除

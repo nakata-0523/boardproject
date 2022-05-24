@@ -12,11 +12,10 @@ from django.urls import reverse_lazy
 def signupfunc(request):#ユーザーの新規作成
     #object_list = User.objects.all() #Userというmodelの情報全てを取得
     # object = User.objects.get(username='nakataseiichirou') #Userというmodelのusername=seiの情報取得
-    
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
-        
+
         try:
             user = User.objects.create_user(username, '', password)#新規ユーザーの登録
             return redirect('login')
@@ -30,9 +29,9 @@ def loginfunc(request):
     if request.method == "POST":#リクエストの判定
         username = request.POST['username']
         password = request.POST['password']
-        
+
         user = authenticate(request, username=username, password=password)
-        
+
         if user is not None:#ログイン成功
             login(request, user)
             return redirect('list')
@@ -62,7 +61,7 @@ def goodfunc(request, pk):
 def readfunc(request, pk):
     object = BoardModel.objects.get(pk=pk)
     username = request.user.get_username()
-    
+
     if username in object.readtext:
         return redirect('list')
     else:
@@ -70,7 +69,7 @@ def readfunc(request, pk):
         object.readtext = object.readtext + ' ' + username
         object.save()
         return redirect('list')
-    
+
 class BoardCreate(CreateView):
     template_name = 'create.html'
     model = BoardModel

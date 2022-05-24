@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="alert alert-primary" role="alert">
+    <h3>社内SNS</h3>
+</div>
+{% endblock header %}
+
+{% block content %}
+
+<div class="container">
+    <a href="{% url 'create' %}" class="btn btn-primary btn-lg active mb-4 mt-2" role="button" aria-pressed="true">投稿作成</a>
+
+    {% for item in object_list %}
+    <div class="alert alert-success" role="alert">
+        <p>タイトル：<a href="{% url 'detail' item.pk %}">{{ item.title }}</a></p><!--aタグないのitem.pkはpkを引数に渡している-->
+        <p>投稿者：{{ item.author }}</p>
+        <a href="#" class="btn btn-primary disabled" role="button" aria-pressed="true">いいね{{ item.good }}件</a>
+        <a href="#" class="btn btn-secondary disabled" role="button" aria-pressed="true">既読{{ item.read }}人</a>
+    </div>
+    {% endfor %}
+    <p class="text-right"><a href="{% url 'logout' %}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">ログアウト</a></p>
+</div>
+{% endblock content %}

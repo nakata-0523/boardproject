@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %} <!--CSSファイルのディレクトリの読み込み-->
+
+{% block customcss %} <!--CSSファイルの読み込み-->
+<link href="{% static 'style.css' %}" rel="stylesheet">
+{% endblock customcss %}
+
+{% block content %}
+
+<body  class="text-center" >
+    <form class="form-signin" method="POST">{% csrf_token %}
+        {{ error }}
+
+        <h1 class="h3 mb-3 font-weight-normal">新規ユーザー登録</h1>
+        <label for="inputEmail" class="sr-only">ユーザー名</label>
+        <input type="text" id="inputEmail" class="form-control" placeholder="ユーザー名" name="username" required autofocus>
+        <label for="inputPassword" class="sr-only">パスワード</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" name="password" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登録</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    </form>
+</body>
+
+{% endblock content %}
